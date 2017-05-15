@@ -31,6 +31,8 @@ class CKEditor extends InputWidget{
         if (array_key_exists('preset', $this->editorOptions)) {
             if($this->editorOptions['preset'] == 'basic'){
                 $this->presetBasic();
+            }elseif($this->editorOptions['preset'] == 'verybasic'){
+                $this->presetVeryBasic();
             }elseif($this->editorOptions['preset'] == 'standard'){
                 $this->presetStandard();
             }elseif($this->editorOptions['preset'] == 'full'){
@@ -55,6 +57,23 @@ class CKEditor extends InputWidget{
             ['name' => 'colors'],
             ['name' => 'links', 'groups' => ['links', 'insert']],
             ['name' => 'others','groups' => ['others', 'about']],
+        ];
+        $options['removeButtons'] = 'Subscript,Superscript,Flash,Table,HorizontalRule,Smiley,SpecialChar,PageBreak,Iframe';
+        $options['removePlugins'] = 'elementspath';
+        $options['resize_enabled'] = false;
+
+
+        $this->editorOptions = ArrayHelper::merge($options, $this->editorOptions);
+    }
+	
+//http://docs.cksource.com/CKEditor_3.x/Developers_Guide/Toolbar
+    private function presetVeryBasic(){
+        $options['height'] = 100;
+
+        $options['toolbarGroups'] = [
+            ['name' => 'undo'],
+            ['name' => 'basicstyles', 'groups' => ['basicstyles']],
+            ['name' => 'paragraph', 'groups' => ['templates', 'list', 'align']],
         ];
         $options['removeButtons'] = 'Subscript,Superscript,Flash,Table,HorizontalRule,Smiley,SpecialChar,PageBreak,Iframe';
         $options['removePlugins'] = 'elementspath';
